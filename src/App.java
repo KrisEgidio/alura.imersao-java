@@ -24,12 +24,12 @@ public class App {
     }
 
     private static void showMovie(Map<String, String> movie) {
-        System.out.print("\u001b[34m" + "[Filme] \u001b[m");
+        System.out.print("\u001b[32m" + "[Filme] \u001b[m");
         System.out.println(movie.get("title"));
-        System.out.print("\u001b[32m" + "[Imagem] \u001b[m");
+        System.out.print("\u001b[35m" + "[Imagem] \u001b[m");
         System.out.println(movie.get("image"));
-        System.out.print("\u001b[35m" + "[Pontuação] "+ "\u001b[m");
-        showStars(Double.parseDouble(movie.get("imDbRating")));
+        System.out.print("\u001b[33m" + "[Pontuação] "+ "\u001b[m");
+        System.out.println(movie.get("imDbRating"));
         System.out.println("\n");
     }
 
@@ -41,13 +41,6 @@ public class App {
         String body = response.body();
 
         return body;
-    }
-
-    private static void showStars(Double points){
-        var number = Math.floor(points);
-        for(int i = 0; i < number; i++){
-            System.out.print("⭐");
-        }
     }
 
 }
