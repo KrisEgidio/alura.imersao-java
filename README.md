@@ -1,6 +1,6 @@
 ## ✨ Aulas
 
-**Aula 01 -** CONSUMINDO UMA API DE FILMES COM JAVA
+**Aula 01 -** Consumindo uma API de filmes com java
 
 ## 🛠️ Desafios
 
