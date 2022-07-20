@@ -1,4 +1,6 @@
+import java.io.InputStream;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -16,20 +18,34 @@ public class App {
         var parser = new JsonParser();
         List<Map<String, String>> movies = parser.parse(body);
 
-        // exibir e manipular os dados
+        // gera as figurinhas
+        var generator = new StickerGenerator();
+        int i = 0;
+
         for (Map<String, String> movie : movies) {
-            showMovie(movie);
+            String title = movie.get("title");
+            String urlImage = movie.get("image");
+            Double rating = Double.parseDouble(movie.get("imDbRating"));
+
+            if (i <= 2) {
+                InputStream inputStream = new URL(urlImage).openStream();
+                String fileName = title + ".png";
+                generator.create(inputStream, fileName, rating);
+            }
+            
+            showMovie(title, urlImage, rating);
+            i++;
         }
 
     }
 
-    private static void showMovie(Map<String, String> movie) {
+    private static void showMovie(String title, String urlImage, Double rating) {
         System.out.print("\u001b[32m" + "[Filme] \u001b[m");
-        System.out.println(movie.get("title"));
+        System.out.println(title);
         System.out.print("\u001b[35m" + "[Imagem] \u001b[m");
-        System.out.println(movie.get("image"));
-        System.out.print("\u001b[33m" + "[Pontuação] "+ "\u001b[m");
-        System.out.println(movie.get("imDbRating"));
+        System.out.println(urlImage);
+        System.out.print("\u001b[33m" + "[Pontuação] " + "\u001b[m");
+        System.out.println(rating);
         System.out.println("\n");
     }
 
