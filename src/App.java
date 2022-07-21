@@ -1,62 +1,41 @@
+import java.io.BufferedReader;
 import java.io.InputStream;
-import java.net.URI;
+import java.io.InputStreamReader;
 import java.net.URL;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
-import java.util.Map;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        
+        //utilizando enum para pegar as informações da api selecionada
+        System.out.println("\u001b[32m" + "[Qual tipo de figurinha?] \u001b[m");
+        System.out.println("\u001b[35m" + "[Digite NASA ou IMDB] \u001b[m");
+        
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String input = reader.readLine().trim().toUpperCase();
+        API api = API.valueOf(input);
+        String url = api.getUrl();
+        ContentExtractor contentExtractor = api.getContentExtractor();
+        
+        //obtendo o body do json da api
+        var http = new HttpClientApi();
+        String json = http.fetchData(url);
 
-        // fazer uma conexão HTTP e buscar os top 250 filmes
-        String body = getBodyRequest("https://api.mocki.io/v2/549a5d8b"); // utilizando endereço alternativo
+        //criando a lista de conteúdo
+        List<Content> contents = contentExtractor.contentExtract(json);
 
-        // extrair só os dados que interessam (titulo, poster, classificação)
-        var parser = new JsonParser();
-        List<Map<String, String>> movies = parser.parse(body);
+        //exibe a lista de conteúdo
+        contentExtractor.showContent(json);
 
         // gera as figurinhas
         var generator = new StickerGenerator();
-        int i = 0;
 
-        for (Map<String, String> movie : movies) {
-            String title = movie.get("title");
-            String urlImage = movie.get("image");
-            Double rating = Double.parseDouble(movie.get("imDbRating"));
-
-            if (i <= 2) {
-                InputStream inputStream = new URL(urlImage).openStream();
-                String fileName = title + ".png";
-                generator.create(inputStream, fileName, rating);
-            }
-            
-            showMovie(title, urlImage, rating);
-            i++;
+        for(int i = 0; i < 3; i++){
+            Content content = contents.get(i);
+            InputStream inputStream = new URL(content.getUrlImage()).openStream();
+            String fileName = content.getTitle() + ".png";
+            generator.create(inputStream, fileName, content.getTitle());
         }
-
-    }
-
-    private static void showMovie(String title, String urlImage, Double rating) {
-        System.out.print("\u001b[32m" + "[Filme] \u001b[m");
-        System.out.println(title);
-        System.out.print("\u001b[35m" + "[Imagem] \u001b[m");
-        System.out.println(urlImage);
-        System.out.print("\u001b[33m" + "[Pontuação] " + "\u001b[m");
-        System.out.println(rating);
-        System.out.println("\n");
-    }
-
-    private static String getBodyRequest(String endpoint) throws Exception {
-        URI url = URI.create(endpoint);
-        var client = HttpClient.newHttpClient();
-        var request = HttpRequest.newBuilder(url).GET().build();
-        HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
-        String body = response.body();
-
-        return body;
     }
 
 }
