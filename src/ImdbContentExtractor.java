@@ -15,7 +15,8 @@ public class ImdbContentExtractor implements ContentExtractor{
         for(Map<String, String> attribute : list){
             String title = attribute.get("title");
             String urlImage = attribute.get("image");
-            var content = new Content(title, urlImage);
+            int rating = Integer.parseInt(attribute.get("imDbRating"));
+            var content = new Content(title, urlImage, rating);
             contents.add(content);
         }
 
@@ -30,7 +31,8 @@ public class ImdbContentExtractor implements ContentExtractor{
         for(Map<String, String> attribute : list){
             String title = attribute.get("title");
             String urlImage = attribute.get("image");
-            Double rating = Double.parseDouble(attribute.get("imDbRating"));
+            String rating = attribute.get("rating");
+            //Double rating = Double.parseDouble(attribute.get("imDbRating"));
 
             System.out.print("\u001b[32m" + "[Filme] \u001b[m");
             System.out.println(title);

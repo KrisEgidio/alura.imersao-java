@@ -8,12 +8,12 @@ public class App {
     public static void main(String[] args) throws Exception {
         
         //utilizando enum para pegar as informações da api selecionada
-        System.out.println("\u001b[32m" + "[Qual tipo de figurinha?] \u001b[m");
-        System.out.println("\u001b[35m" + "[Digite NASA ou IMDB] \u001b[m");
+        //System.out.println("\u001b[32m" + "[Qual tipo de figurinha?] \u001b[m");
+        //System.out.println("\u001b[35m" + "[Digite 1 para NASA ou 2 para IMDB] \u001b[m");
         
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String input = reader.readLine().trim().toUpperCase();
-        API api = API.valueOf(input);
+        //BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        //String input = reader.readLine().toUpperCase();
+        API api = API.valueOf("LANGUAGE");
         String url = api.getUrl();
         ContentExtractor contentExtractor = api.getContentExtractor();
         
@@ -30,7 +30,7 @@ public class App {
         // gera as figurinhas
         var generator = new StickerGenerator();
 
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i <= contents.size(); i++){
             Content content = contents.get(i);
             InputStream inputStream = new URL(content.getUrlImage()).openStream();
             String fileName = content.getTitle() + ".png";

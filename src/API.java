@@ -1,7 +1,8 @@
 public enum API {
     
     NASA("https://api.mocki.io/v2/549a5d8b/NASA-APOD-JamesWebbSpaceTelescope", "NASA"), 
-    IMDB("https://api.mocki.io/v2/549a5d8b", "IMDB");
+    IMDB("https://api.mocki.io/v2/549a5d8b", "IMDB"),
+    LANGUAGE("http://localhost:8080/linguagens", "LANGUAGE"); 
 
     private String url;
     private String name;
@@ -19,8 +20,11 @@ public enum API {
         if(this.name == "NASA"){
             var extractor = new NasaContentExtractor();
             return extractor;
-        } else{
+        } else if (this.name == "IMDB"){
             var extractor = new ImdbContentExtractor();
+            return extractor;
+        } else {
+            var extractor = new LanguageContentExtractor();
             return extractor;
         }
     }
