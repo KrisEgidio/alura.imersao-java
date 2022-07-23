@@ -14,7 +14,7 @@ public class NasaContentExtractor implements ContentExtractor{
         for(Map<String, String> attribute : list){
             String title = attribute.get("title");
             String urlImage = attribute.get("url");
-            var content = new Content(title, urlImage, 1);
+            var content = new Content(title, urlImage, "1");
             contents.add(content);
         }
 

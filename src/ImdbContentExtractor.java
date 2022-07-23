@@ -15,7 +15,7 @@ public class ImdbContentExtractor implements ContentExtractor{
         for(Map<String, String> attribute : list){
             String title = attribute.get("title");
             String urlImage = attribute.get("image");
-            int rating = Integer.parseInt(attribute.get("imDbRating"));
+            String rating = attribute.get("imDbRating");
             var content = new Content(title, urlImage, rating);
             contents.add(content);
         }

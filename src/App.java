@@ -20,7 +20,7 @@ public class App {
         //obtendo o body do json da api
         var http = new HttpClientApi();
         String json = http.fetchData(url);
-
+        
         //criando a lista de conteúdo
         List<Content> contents = contentExtractor.contentExtract(json);
 
@@ -30,7 +30,7 @@ public class App {
         // gera as figurinhas
         var generator = new StickerGenerator();
 
-        for(int i = 0; i <= contents.size(); i++){
+        for(int i = 0; i < contents.size(); i++){
             Content content = contents.get(i);
             InputStream inputStream = new URL(content.getUrlImage()).openStream();
             String fileName = content.getTitle() + ".png";

@@ -2,7 +2,7 @@ public enum API {
     
     NASA("https://api.mocki.io/v2/549a5d8b/NASA-APOD-JamesWebbSpaceTelescope", "NASA"), 
     IMDB("https://api.mocki.io/v2/549a5d8b", "IMDB"),
-    LANGUAGE("http://localhost:8080/linguagens", "LANGUAGE"); 
+    LANGUAGE("https://alura-imersao-api.herokuapp.com/linguagens", "LANGUAGE"); 
 
     private String url;
     private String name;

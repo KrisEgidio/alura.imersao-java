@@ -14,7 +14,7 @@ public class LanguageContentExtractor implements ContentExtractor{
         for(Map<String, String> attribute : list){
             String title = attribute.get("title");
             String urlImage = attribute.get("image");
-            int ranking = Integer.parseInt(attribute.get("ranking"));
+            String ranking = attribute.get("ranking");
             var content = new Content(title, urlImage, ranking);
             contents.add(content);
         }
@@ -30,9 +30,9 @@ public class LanguageContentExtractor implements ContentExtractor{
         for(Map<String, String> attribute : list){
             String title = attribute.get("title");
             String urlImage = attribute.get("image");
-            int ranking = Integer.parseInt(attribute.get("ranking"));
+            String ranking = attribute.get("ranking");
 
-            System.out.print("\u001b[32m" + "[Filme] \u001b[m");
+            System.out.print("\u001b[32m" + "[Linguagem] \u001b[m");
             System.out.println(title);
             System.out.print("\u001b[35m" + "[Imagem] \u001b[m");
             System.out.println(urlImage);
