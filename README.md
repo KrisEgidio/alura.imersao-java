@@ -1,9 +1,14 @@
-![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+![Badge Finalizado](http://img.shields.io/static/v1?label=STATUS&message=%20FINALIZADO&color=GREEN&style=for-the-badge)
 ## IMERSÃO JAVA - ALURA
 Objetivo do projeto é consumir a API de melhores filmes do IMDb ou imagens da NASA (com imagens fantásticas do James Webb Space Telescope ❤) e criar stickers para o whatsapp utilizando a linguagem Java. 
 
+## ✨ Tecnologias 
+**✔** Spring Boot <br>
+**✔** Java 17 <br>
+**✔** VsCode <br>
+**✔** MongoDB <br>
 
-## ✨ Aulas
+## 🚀 Aulas
 
 **Aula 01 -** Consumindo uma API de filmes com java <br>
 **Aula 02 -** Gerando figurinhas para o whatsapp <br>
