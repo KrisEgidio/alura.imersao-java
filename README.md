@@ -2,6 +2,13 @@
 ## IMERSÃO JAVA - ALURA
 Objetivo do projeto é consumir a API de melhores filmes do IMDb ou imagens da NASA (com imagens fantásticas do James Webb Space Telescope ❤) e criar stickers para o whatsapp utilizando a linguagem Java. 
 
+|🪧| Vitrine.Dev||
+|-|-|-|
+|✨| Nome|	Alura Sticker|
+|🏷️| Tecnologias|	Java, Spring, MongoDB, Heroku, Git|
+|🚀| URL|	https://linguagens-imersao-api.herokuapp.com/linguagens|
+|🤿| Desafio|	https://www.alura.com.br/imersao-java|
+
 ## ✨ Tecnologias 
 **✔** Spring Boot <br>
 **✔** Java 17 <br>
